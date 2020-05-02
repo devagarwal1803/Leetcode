@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int numJewelsInStones(string J, string S) {
+        unordered_map<int,int>m;
+        unordered_set<int>s;
+        for(auto x:J)
+            s.insert(x);
+        for(auto x:S)
+            m[x]++;
+        int ans=0;
+        for(auto x:m){
+            if(s.find(x.first)!=s.end())
+                ans+=x.second;
+        }
+        return ans;
+    }
+};
