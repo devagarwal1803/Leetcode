@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool canConstruct(string ransomNote, string magazine) {
+        unordered_map<char,int>m1,m2;
+        for(auto x:magazine)
+            m1[x]++;
+        for(auto x:ransomNote)
+            m2[x]++;
+        for(auto x:m2){
+            if(m1.find(x.first)!=m1.end() && m1[x.first]>=x.second)
+                continue;
+            else
+                return false;
+        }
+        return true;
+    }
+};
