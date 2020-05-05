@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int firstUniqChar(string S) {
+        unordered_map<char,int>m;
+        for(auto x:S)
+            m[x]++;
+        int i=0;
+        for(auto x:S){
+            if(m[x]==1)
+                return i;
+            i++;
+        }
+        return -1;
+    }
+};
