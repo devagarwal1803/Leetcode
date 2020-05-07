@@ -1,0 +1,28 @@
+class Solution {
+    int depth_x,depth_y;
+public:
+    void solve(TreeNode *root, int x, int y, int cur_depth){
+        if(root==NULL)
+            return;
+        if( root->right!=NULL && root->left!=NULL && 
+           (root->right->val == x || root->right->val == y) && (root->left->val == x || root->left->val == y))
+           return;
+        if(root->val == y){
+            depth_y = cur_depth;
+            return;
+        }
+        if(root->val == x){
+            depth_x = cur_depth;
+            return;
+        }
+        solve(root->left, x, y, cur_depth+1);
+        solve(root->right, x, y, cur_depth+1);
+    }
+    bool isCousins(TreeNode* root, int x, int y) {
+        depth_x=-1,depth_y=-1;
+        solve(root, x, y, 0);
+        if(depth_x!=-1 && depth_x==depth_y)
+            return true;
+        return false;
+    }
+};
