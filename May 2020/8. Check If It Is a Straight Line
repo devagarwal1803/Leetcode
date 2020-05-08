@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>> &A) {
+        if(A.size()<=2)
+            return true;
+        int X=A[0][0],Y=A[0][1];
+        int X2=A[1][0],Y2=A[1][1];
+        int slope_x,slope_y;
+        
+        int temp =  __gcd(abs(X-X2),abs(Y-Y2));
+        slope_x= abs(X-X2)/temp;
+        slope_y= abs(Y-Y2)/temp;
+        
+        for(int i=2; i<A.size(); i++){
+            int temp =  __gcd(abs(X-A[i][0]),abs(Y-A[i][1]));
+            int slope_x2= abs(X-A[i][0])/temp;
+            int slope_y2= abs(Y-A[i][1])/temp;
+            if(slope_x!=slope_x2 || slope_y!=slope_y2)
+                return false;
+        }
+        return true;
+    }
+};
