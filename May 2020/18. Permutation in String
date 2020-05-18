@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool checkInclusion(string s1, string s2) {
+        vector<int> pv(256,0),sv(256,0);
+        
+        if(s1.length()>s2.length())
+            return false;
+        
+        for(int i=0;i<s1.length();i++){
+            sv[s2[i]]++;
+            pv[s1[i]]++;
+        }
+        if(sv==pv)
+            return true;
+        for(int i=s1.length();i<s2.length();i++){
+            sv[s2[i]]++;
+            sv[s2[i-s1.length()]]--;
+            
+            if(sv==pv)
+                return true;
+        }
+        return false;
+    }
+};
