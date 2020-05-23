@@ -1,0 +1,25 @@
+class Solution {
+public:
+    static bool fun( pair<int,char> &a, pair<int,char> &b )
+    {
+        return (a.first>b.first);
+    }
+    string frequencySort(string s) {
+        unordered_map<char,int>m;
+        for(auto x:s)
+            m[x]++;
+        vector<pair<int,char>>v;
+        for(auto x:m)
+            v.push_back({x.second,x.first});
+        sort(v.begin(), v.end(), fun);
+        string ans="";
+        for(auto x:v){
+            int count=x.first;
+            int c=x.second;
+            while(count--){
+                ans+=c;
+            }
+        }
+        return ans;
+    }
+};
