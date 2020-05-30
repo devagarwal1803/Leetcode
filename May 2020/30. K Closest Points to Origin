@@ -1,0 +1,24 @@
+class cmp{
+    public :
+    bool operator()(vector<int>&a, vector<int>&b) {
+        return (a[0]*a[0]+a[1]*a[1])<(b[0]*b[0]+b[1]*b[1]);
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>> &A, int k) {
+        priority_queue< vector<int>, vector<vector<int>>, cmp > pq;
+        vector<vector<int>>ans;
+        for(auto x:A){
+            pq.push(x);
+            if(pq.size()>k)
+                pq.pop();
+        }
+        while(!pq.empty()){
+            ans.push_back(pq.top());
+            pq.pop();
+        }
+        return ans;
+    }
+};
